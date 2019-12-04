@@ -1,0 +1,41 @@
+#!/bin/bash
+
+[ -n "$PYENV_DEBUG" ] && set -x
+
+cd () { builtin cd "$@" && autoenv_autoload_virtualenv_from_file; }
+
+autoenv_autoload_virtualenv_from_file () {
+  search_directory=`pwd`
+  found_virtualenv="system"
+  if [ "$PYENV_VERSION" == "" ]; then
+    current_virtualenv="system"
+  else
+    current_virtualenv="$PYENV_VERSION"
+  fi
+
+  while [ "$(ls $search_directory)" != "$(ls /)" ]; do
+    if [ -e "$search_directory/.python-virtualenv" ]; then
+      found_virtualenv=`cat $search_directory/.python-virtualenv`
+      break
+    fi
+
+    search_directory="$search_directory/.."
+  done
+
+  if [ "$current_virtualenv" != "system" ]; then
+    if [ "$current_virtualenv" != "$found_virtualenv" ]; then
+      pyenv deactivate $current_virtualenv
+    fi
+  fi
+
+  if [ "$current_virtualenv" != "$found_virtualenv" ]; then
+    if [ "$found_virtualenv" != "system" ]; then
+      has_virtualenv=`pyenv virtualenvs | grep -v '\/envs\/' | awk -F ' ' '{print $1}' | grep "$found_virtualenv" -x`
+      if [ "$has_virtualenv" == "" ]; then
+        pyenv virtualenv $found_virtualenv
+      fi
+
+      pyenv activate $found_virtualenv
+    fi
+  fi
+}
