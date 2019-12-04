@@ -1,5 +1,5 @@
 #!/bin/bash
 
-script_path="$PYENV_ROOT/plugins/pyenv-autoenv"
+autoenv_path="$(pyenv root)/plugins/pyenv-autoenv"
 
-echo "source $script_path/bin/script"
+echo "source $autoenv_path/scripts/autoenv"
