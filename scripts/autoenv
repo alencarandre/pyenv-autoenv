@@ -1,0 +1,16 @@
+#!/bin/bash
+
+[ -n "$PYENV_DEBUG" ] && set -x
+
+PROMPT_COMMAND="_pyenv_autoenv_after_hooks${PROMPT_COMMAND:+;$PROMPT_COMMAND}"
+
+_pyenv_autoenv_after_hooks() {
+  local last_command=`history | grep -v history | awk -F ' ' 'END {print $2}'`
+  local autoenv_path="$(pyenv root)/plugins/pyenv-autoenv"
+
+  case $last_command in
+  cd)
+    source "$autoenv_path/hooks/after-cd"
+    ;;
+  esac
+}

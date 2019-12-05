@@ -1,0 +1,23 @@
+#!/bin/bash
+
+if test "$#" -ne 1; then
+  echo "Ilegal parameters"
+  exit 1
+fi
+
+if [ -e ".python-virtualenv" ]; then
+  message="Virtualenv has already defined and will be overrided. Do you want to continue?(y/N)"
+  read -p "$message" -n 1 -r
+  echo
+
+  if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    exit 0
+  fi
+fi
+
+echo "$1" > .python-virtualenv
+
+echo
+echo -ne "Run command bellow to active new virtualenv: \n"
+echo -ne "    cd .\n"
+echo

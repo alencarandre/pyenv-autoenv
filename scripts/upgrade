@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cd $(pyenv root)/plugins/pyenv-autoenv
+
+git checkout master
+git pull
