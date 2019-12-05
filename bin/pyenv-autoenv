@@ -1,3 +1,17 @@
 #!/bin/bash
 
-echo "$1" > .python-virtualenv
+scripts_path="$(pyenv root)/plugins/pyenv-autoenv/scripts"
+
+case "$1" in
+init)
+  source_file="init"
+  ;;
+version)
+  source_file="version"
+  ;;
+*)
+  source_file="create-virtualenv-file"
+  ;;
+esac
+
+source "$scripts_path/$source_file"

@@ -10,6 +10,7 @@ _pyenv_autoenv_after_hooks() {
 
   case $last_command in
   cd)
-    source "$autoenv_path/hooks/cd_after"
+    source "$autoenv_path/hooks/after-cd"
+    ;;
   esac
 }

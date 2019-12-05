@@ -1,0 +1,3 @@
+#!/bin/bash
+
+echo "source $(pyenv root)/plugins/pyenv-autoenv/scripts/autoenv"
