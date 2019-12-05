@@ -4,9 +4,10 @@ This is helpful to manage virtual environment automatically. Just enter the proj
 
 ## Instalations
 
-1. **Check if dependencies is installed**
+1. **Check if dependencies are installed**
     - [pyenv](https://github.com/pyenv/pyenv)
     - [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv)
+    - [Git](https://git-scm.com/)
 
 2. **Check out pyenv-autoenv into plugin directory**
 
@@ -17,10 +18,13 @@ This is helpful to manage virtual environment automatically. Just enter the proj
 3. Add pyenv autoenv-init to your shell to enable auto-activation of virtualenvs.
 
     ```sh
-      $ echo 'eval "$(pyenv autoenv-init -)"' >> ~/.bash_profile
+      $ echo 'eval "$(pyenv autoenv init)"' >> ~/.bash_profile
     ```
 
 ## Usage
+
+
+### Create `.pyenv-virtualenv` file
 
 Inside your project root path, run command bellow:
 
@@ -28,9 +32,21 @@ Inside your project root path, run command bellow:
 $ pyenv autoenv your-virtual-environment-name-here
 ```
 
+### Check version
+
+```sh
+$ pyenv autoenv version
+```
+
+### Upgrade to last version
+
+```
+$ pyenv autoenv upgrade
+```
+
 ## Limitation and contribution
 
-This plugin was tested only for bash. If you need to use in other terminal, fell free to test and go ahead to implement or fix something if necessary. Your contribution is thankful.
+This plugin was tested only for `bash`. If you need to use in other terminals, fell free to test and go ahead to implement or fix something if necessary. Your contribution is thankful.
 
 ## Licence
 
