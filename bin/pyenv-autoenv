@@ -9,6 +9,9 @@ init)
 version)
   source_file="version"
   ;;
+upgrade)
+  source_file="upgrade"
+  ;;
 *)
   source_file="create-virtualenv-file"
   ;;
